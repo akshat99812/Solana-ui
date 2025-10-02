@@ -17,6 +17,19 @@
       ]
     },
     {
+      "name": "wallet-button",
+      "type": "registry:component",
+      "title": "wallet button",
+      "description": "A simple wallet connect component",
+      "registryDependencies": ["button, dropdown-menu"],
+      "files": [
+        {
+          "path": "registry/new-york/solana/wallet-button/wallet-button.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "example-form",
       "type": "registry:component",
       "title": "Example Form",
