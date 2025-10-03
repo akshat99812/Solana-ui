@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { useWallet } from "@solana/wallet-adapter-react";
+import { Avatar } from "@/registry/new-york/connectors/avatar/avatar";
 import {
   ChevronDown,
   Copy,
@@ -33,45 +34,24 @@ export const WalletScrollButton = () => {
 
   const base58 = React.useMemo(() => publicKey?.toBase58(), [publicKey]);
   
-  const handleCopyAddress = React.useCallback(async () => {
-    if (base58) {
-      await navigator.clipboard.writeText(base58);
-    }
-  }, [base58]);
 
   if (base58 && wallet) {
     return (
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button variant="outline">
-            <div className="flex items-center space-x-2">
-              <Image
-                src={wallet.adapter.icon}
-                alt={`${wallet.adapter.name} icon`}
-                width={24}
-                height={24}
-              />
-              <span className="font-mono">
-                {base58.slice(0, 4)}...{base58.slice(-4)}
-              </span>
-              <ChevronDown className="h-4 w-4 text-muted-foreground" />
-            </div>
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent align="end">
-          <DropdownMenuItem onClick={handleCopyAddress}>
-            <Copy className="mr-2 h-4 w-4" />
-            <span>Copy Address</span>
-          </DropdownMenuItem>
-          <DropdownMenuItem
+      <div className="flex justify-center">
+        <div className="mx-2">
+          <Avatar address={base58}></Avatar>
+        </div>
+        <div className="mx-2 my-auto">
+          <Button
             onClick={() => disconnect()}
             className="text-red-500 focus:text-red-500"
+            variant="outline"
           >
-            <LogOut className="mr-2 h-4 w-4" />
-            <span>Disconnect</span>
-          </DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
+            <LogOut className=" h-4 w-4" />
+            {/*<span>Disconnect</span>*/}
+          </Button>
+        </div>
+      </div>
     );
   }
 

@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { Button } from "@/registry/new-york/ui/button";
-import { Status, TransactionStatus } from "./status";
+import { Status, TransactionStatus } from "@/registry/new-york/transactionKit/status/status";
 
 export const TokenSender = () => {
   const [status, setStatus] = useState<TransactionStatus>("idle");
@@ -15,15 +15,15 @@ export const TokenSender = () => {
     setTxid(undefined);
 
     try {
-      console.log("Attempt: Starting Token Transfer Process");
+
       await new Promise(resolve => setTimeout(resolve, 2000));
       
       const simulatedTxid = "5y5tC6jC2f7g2gK8d...FAKE_SIGNATURE...gHjJkL9mNn2pQrS";
       setTxid(simulatedTxid);
-      console.log(`Transaction Submitted: ${simulatedTxid}`);
+      
       
       setStatus("confirming");
-      console.log("Waiting for confirmation...");
+      
       await new Promise(resolve => setTimeout(resolve, 4000));
 
       const shouldFail = Math.random() < 0.2;
@@ -31,10 +31,9 @@ export const TokenSender = () => {
         throw new Error("Simulation: Transaction not confirmed by the network.");
       }
       setStatus("success");
-      console.log("Transaction Successfully Confirmed!");
+     
       
     } catch (err: any) {
-      console.error(`Transaction failed with error: ${err.message}`);
       setError(err.message || "An unexpected error occurred.");
       setStatus("error");
     }
