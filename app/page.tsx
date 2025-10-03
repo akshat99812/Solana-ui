@@ -16,6 +16,7 @@ export default function Home() {
   const endpoint = useMemo(() => clusterApiUrl(network), [network]);
 
   const wallets = useMemo(() => [], []);
+  
 
   return (
     <div className="max-w-3xl mx-auto flex flex-col min-h-svh px-4 py-8 gap-8">
@@ -25,6 +26,9 @@ export default function Home() {
         <WalletModalProvider>
           <WalletScrollButton></WalletScrollButton>
           <TokenSender></TokenSender>
+
+          
+          
         </WalletModalProvider>
       </WalletProvider>
     </ConnectionProvider>
