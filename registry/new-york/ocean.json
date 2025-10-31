@@ -1,0 +1,34 @@
+
+{
+  "name": "ocean",
+  "dependencies": [
+    "framer-motion"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "name": "Button.tsx",
+      "path": "components/ocean/Button.tsx"
+    },
+    {
+      "name": "Card.tsx",
+      "path": "components/ocean/Card.tsx"
+    },
+    {
+      "name": "GlassmorphicCard.tsx",
+      "path": "components/ocean/GlassmorphicCard.tsx"
+    },
+    {
+      "name": "AnimatedText.tsx",
+      "path": "components/ocean/AnimatedText.tsx"
+    },
+    {
+      "name": "Navbar.tsx",
+      "path": "components/ocean/Navbar.tsx"
+    },
+    {
+      "name": "Footer.tsx",
+      "path": "components/ocean/Footer.tsx"
+    }
+  ]
+}

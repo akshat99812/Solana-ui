@@ -3,7 +3,7 @@
   "name": "example-form",
   "type": "registry:component",
   "title": "Example Form",
-  "description": "A contact form with Zod validation.",
+  "description": "A contact form with Zod validation",
   "dependencies": [
     "zod"
   ],

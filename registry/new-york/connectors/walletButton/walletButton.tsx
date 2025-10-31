@@ -4,8 +4,6 @@ import React from "react";
 import Image from "next/image";
 import { useWallet } from "@solana/wallet-adapter-react";
 import {
-  ChevronDown,
-  Copy,
   LogOut,
   LoaderCircle,
   Wallet as WalletIcon, 
@@ -19,12 +17,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/registry/new-york/ui/dialog";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/registry/new-york/ui/dropdown-menu";
 import { Avatar } from "../avatar/avatar";
 
 export const WalletButton = () => {

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "transaction-preview",
+  "type": "registry:component",
+  "title": "Transaction Preview",
+  "description": "Preview transaction details before sending",
+  "registryDependencies": [
+    "card",
+    "dialog"
+  ],
+  "files": [
+    {
+      "path": "registry/new-york/transactionKit/preview/preview.tsx",
+      "content": "",
+      "type": "registry:component"
+    }
+  ]
+}

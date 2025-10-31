@@ -5,8 +5,6 @@ import Image from "next/image";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { Avatar } from "@/registry/new-york/connectors/avatar/avatar";
 import {
-  ChevronDown,
-  Copy,
   LogOut,
   LoaderCircle,
   Wallet as WalletIcon,

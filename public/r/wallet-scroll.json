@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "wallet-scroll",
+  "type": "registry:component",
+  "title": "Wallet Scroll",
+  "description": "Scrollable wallet list component",
+  "registryDependencies": [
+    "scroll-area"
+  ],
+  "files": [
+    {
+      "path": "registry/new-york/connectors/walletScroll/walletScroll.tsx",
+      "content": "\"use client\";\n\nimport React from \"react\";\nimport Image from \"next/image\";\nimport { useWallet } from \"@solana/wallet-adapter-react\";\nimport { Avatar } from \"@/registry/new-york/connectors/avatar/avatar\";\nimport {\n  ChevronDown,\n  Copy,\n  LogOut,\n  LoaderCircle,\n  Wallet as WalletIcon,\n} from \"lucide-react\";\n\nimport { Button } from \"@/registry/new-york/ui/button\";\nimport {\n  DropdownMenu,\n  DropdownMenuContent,\n  DropdownMenuItem,\n  DropdownMenuLabel,\n  DropdownMenuSeparator,\n  DropdownMenuTrigger,\n} from \"@/components/ui/dropdown-menu\";\n\nexport const WalletScrollButton = () => {\n  const {\n    select,\n    wallets,\n    publicKey,\n    disconnect,\n    connecting,\n    wallet,\n  } = useWallet();\n\n  const base58 = React.useMemo(() => publicKey?.toBase58(), [publicKey]);\n  \n\n  if (base58 && wallet) {\n    return (\n      <div className=\"flex justify-center\">\n        <div className=\"mx-2\">\n          <Avatar address={base58}></Avatar>\n        </div>\n        <div className=\"mx-2 my-auto\">\n          <Button\n            onClick={() => disconnect()}\n            className=\"text-red-500 focus:text-red-500\"\n            variant=\"outline\"\n          >\n            <LogOut className=\" h-4 w-4\" />\n            {/*<span>Disconnect</span>*/}\n          </Button>\n        </div>\n      </div>\n    );\n  }\n\n  return (\n    <DropdownMenu>\n      <DropdownMenuTrigger asChild>\n        <Button variant=\"outline\" disabled={connecting}>\n          {connecting ? (\n            <LoaderCircle className=\"mr-2 h-4 w-4 animate-spin\" />\n          ) : (\n            <WalletIcon className=\"mr-2 h-4 w-4\" />\n          )}\n          Connect Wallet\n        </Button>\n      </DropdownMenuTrigger>\n      <DropdownMenuContent align=\"end\" className=\"max-h-60 w-56 overflow-y-auto\">\n        <DropdownMenuLabel>Select a wallet</DropdownMenuLabel>\n        <DropdownMenuSeparator />\n        {wallets.filter((w) => w.readyState === 'Installed').map((walletItem) => (\n          <DropdownMenuItem\n            key={walletItem.adapter.name}\n            onClick={() => select(walletItem.adapter.name)}\n            disabled={connecting}\n            className=\"flex items-center justify-between\"\n          >\n            <div className=\"flex items-center\">\n              <Image\n                src={walletItem.adapter.icon}\n                alt={walletItem.adapter.name}\n                width={24}\n                height={24}\n                className=\"mr-2\"\n              />\n              <span>{walletItem.adapter.name}</span>\n            </div>\n            {connecting && wallet?.adapter.name === walletItem.adapter.name && (\n              <LoaderCircle className=\"h-4 w-4 animate-spin\" />\n            )}\n          </DropdownMenuItem>\n        ))}\n      </DropdownMenuContent>\n    </DropdownMenu>\n  );\n};",
+      "type": "registry:component"
+    }
+  ]
+}

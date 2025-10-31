@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "avatar-connector",
+  "type": "registry:component",
+  "title": "Avatar Connector",
+  "description": "Wallet avatar connector component",
+  "registryDependencies": [
+    "avatar"
+  ],
+  "files": [
+    {
+      "path": "registry/new-york/connectors/avatar/avatar.tsx",
+      "content": "\"use client\";\n\nimport React,{ useMemo} from \"react\";\nimport { minidenticon } from \"minidenticons\";\nimport { cn } from \"@/lib/utils\"; \n\ninterface SolanaIdenticonProps {\n  address: string;\n  saturation?: number;\n  lightness?: number;\n  className?: string;\n}\n\nexport const Avatar = ({\n  address,\n  saturation = 95,\n  lightness = 45,\n  className,\n  ...props\n}: SolanaIdenticonProps) => {\n  if (!address) {\n    return null;\n  }\n  const svgString = useMemo(\n    () => minidenticon(address, saturation, lightness),\n    [address, saturation, lightness]\n  );\n\n  return (\n    <div\n      className={cn(\"h-10 w-10 shrink-0 overflow-hidden rounded-full\", className)}\n      dangerouslySetInnerHTML={{ __html: svgString }}\n      {...props}\n    />\n  );\n};",
+      "type": "registry:component"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "use-token",
+  "type": "registry:hook",
+  "title": "useToken Hook",
+  "description": "Hook for managing token data and state",
+  "files": [
+    {
+      "path": "registry/new-york/hooks/useToken.ts",
+      "content": "import { useState, useEffect } from 'react';\n\n// Re-using the Token interface for consistency\nexport interface Token {\n  address: string;\n  symbol: string;\n  name:string;\n  logoURI: string;\n  decimals: number; // Jupiter's API includes decimals, which is useful\n  tags: string[];\n}\n\n// The return type of our hook\ninterface UseTokenListResult {\n  tokens: Token[];\n  isLoading: boolean;\n  error: Error | null;\n}\n\nconst JUPITER_TOKEN_LIST_API = \"https://token.jup.ag/all\";\n\nexport function useTokenList(): UseTokenListResult {\n  const [tokens, setTokens] = useState<Token[]>([]);\n  const [isLoading, setIsLoading] = useState<boolean>(true);\n  const [error, setError] = useState<Error | null>(null);\n\n  useEffect(() => {\n    const fetchTokens = async () => {\n      setIsLoading(true);\n      setError(null);\n      try {\n        const response = await fetch(JUPITER_TOKEN_LIST_API);\n        if (!response.ok) {\n          throw new Error(`Failed to fetch token list: ${response.statusText}`);\n        }\n        const data: Token[] = await response.json();\n        setTokens(data);\n      } catch (e) {\n        if (e instanceof Error) {\n            setError(e);\n        } else {\n            setError(new Error('An unknown error occurred'));\n        }\n      } finally {\n        setIsLoading(false);\n      }\n    };\n\n    fetchTokens();\n  }, []); // Empty dependency array ensures this runs only once on mount\n\n  return { tokens, isLoading, error };\n}",
+      "type": "registry:hook"
+    }
+  ]
+}

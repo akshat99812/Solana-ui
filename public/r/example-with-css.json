@@ -3,7 +3,7 @@
   "name": "example-with-css",
   "type": "registry:component",
   "title": "Example with CSS",
-  "description": "A login form with a CSS file.",
+  "description": "A component with CSS file example",
   "files": [
     {
       "path": "registry/new-york/blocks/example-with-css/example-card.tsx",
