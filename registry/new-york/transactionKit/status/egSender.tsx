@@ -65,7 +65,7 @@ export const TokenSender = ({}) => {
       <div className="my-4">
         {status === "idle" && (
           <Button onClick={handleSendTransactionSuccess} size="lg">
-            Example Transaction for succesful Transaction
+            Click Here for Example Transaction for succesful Transaction
           </Button>
         )}
         <Status
@@ -78,7 +78,7 @@ export const TokenSender = ({}) => {
       <div>
         {status === "idle" && (
           <Button onClick={handleSendTransactionFail} size="lg">
-            Example Transaction for Failed Transaction
+            Click here for Example Transaction for Failed Transaction
           </Button>
         )}
       </div>
